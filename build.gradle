@@ -140,7 +140,7 @@ dependencies {
     localRuntime "curse.maven:athena-841890:${athena_cf_file_id}"
     compileOnly "curse.maven:resourcefullib-570073:${resourcefullib_cf_file_id}"
     localRuntime "curse.maven:resourcefullib-570073:${resourcefullib_cf_file_id}"
-    compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
+    compileOnly "dev.emi:emi-neoforge:${emi_version}"
     localRuntime "dev.emi:emi-neoforge:${emi_version}"
 /*
     compileOnly "vazkii.botania:Botania:${botania_version}:api")
