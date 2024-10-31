@@ -139,9 +139,9 @@ public class BackpackRecipeHandler implements StandardRecipeHandler<BackpackCont
         }
         UpgradeContainerType<?, ?> type = container.getType();
         if (category == null ||
-          category == VanillaEmiRecipeCategories.SMELTING && (ModItems.SMELTING_TYPE.equals(type)) ||
-          category == VanillaEmiRecipeCategories.SMOKING && (ModItems.SMOKING_TYPE.equals(type)) ||
-          category == VanillaEmiRecipeCategories.BLASTING && (ModItems.BLASTING_TYPE.equals(type))
+          category == VanillaEmiRecipeCategories.SMELTING && ModItems.SMELTING_TYPE.equals(type) ||
+          category == VanillaEmiRecipeCategories.SMOKING && ModItems.SMOKING_TYPE.equals(type) ||
+          category == VanillaEmiRecipeCategories.BLASTING && ModItems.BLASTING_TYPE.equals(type)
         ) {
             consumer.add(getCookingLogic(handler).getCookingSlots().getFirst());
             return true;
@@ -168,7 +168,7 @@ public class BackpackRecipeHandler implements StandardRecipeHandler<BackpackCont
         var cookingContainer = getCookingContainer(handler);
         if (cookingContainer != null) {
             var type = cookingContainer.getType();
-            if (category == VanillaEmiRecipeCategories.SMELTING && (ModItems.SMELTING_TYPE.equals(type))) {
+            if (category == VanillaEmiRecipeCategories.SMELTING && ModItems.SMELTING_TYPE.equals(type)) {
                 return true;
             }
             if (category == VanillaEmiRecipeCategories.SMOKING && ModItems.SMOKING_TYPE.equals(type)) {
