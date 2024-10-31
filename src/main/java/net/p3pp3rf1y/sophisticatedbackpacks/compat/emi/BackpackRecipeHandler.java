@@ -98,17 +98,9 @@ public class BackpackRecipeHandler implements StandardRecipeHandler<BackpackCont
         return firstContainer;
     }
     public static @Nullable CookingLogicContainer<?> getCookingLogic(StorageContainerMenuBase<?> self) {
-        {
-            var container = getCookingContainer(self);
-            if (container != null) {
-                return container.getSmeltingLogicContainer();
-            }
-        }
-        {
-            var container = getAutoCookingContainer(self);
-            if (container != null) {
-                return container.getCookingLogicContainer();
-            }
+        var container = getCookingContainer(self);
+        if (container != null) {
+            return container.getSmeltingLogicContainer();
         }
         return null;
     }
@@ -143,16 +135,13 @@ public class BackpackRecipeHandler implements StandardRecipeHandler<BackpackCont
     private static boolean addCookingSlots(BackpackContainer handler, Collection<? super Slot> consumer, @Nullable EmiRecipeCategory category) {
         UpgradeContainerBase<?, ?> container = getCookingContainer(handler);
         if (container == null) {
-            container = getAutoCookingContainer(handler);
-            if (container == null) {
-                return false;
-            }
+            return false;
         }
         UpgradeContainerType<?, ?> type = container.getType();
         if (category == null ||
-          category == VanillaEmiRecipeCategories.SMELTING && (ModItems.SMELTING_TYPE.equals(type) || ModItems.AUTO_SMELTING_TYPE.equals(type)) ||
-          category == VanillaEmiRecipeCategories.SMOKING && (ModItems.SMOKING_TYPE.equals(type) || ModItems.AUTO_SMOKING_TYPE.equals(type)) ||
-          category == VanillaEmiRecipeCategories.BLASTING && (ModItems.BLASTING_TYPE.equals(type) || ModItems.AUTO_BLASTING_TYPE.equals(type))
+          category == VanillaEmiRecipeCategories.SMELTING && (ModItems.SMELTING_TYPE.equals(type)) ||
+          category == VanillaEmiRecipeCategories.SMOKING && (ModItems.SMOKING_TYPE.equals(type)) ||
+          category == VanillaEmiRecipeCategories.BLASTING && (ModItems.BLASTING_TYPE.equals(type))
         ) {
             consumer.add(getCookingLogic(handler).getCookingSlots().getFirst());
             return true;
@@ -186,19 +175,6 @@ public class BackpackRecipeHandler implements StandardRecipeHandler<BackpackCont
                 return true;
             }
             if (category == VanillaEmiRecipeCategories.BLASTING && ModItems.BLASTING_TYPE.equals(type)) {
-                return true;
-            }
-        }
-        var autoCookingContainer = getAutoCookingContainer(handler);
-        if (autoCookingContainer != null) {
-            var type = autoCookingContainer.getType();
-            if (category == VanillaEmiRecipeCategories.SMELTING && (ModItems.AUTO_SMELTING_TYPE.equals(type))) {
-                return true;
-            }
-            if (category == VanillaEmiRecipeCategories.SMOKING && ModItems.AUTO_SMOKING_TYPE.equals(type)) {
-                return true;
-            }
-            if (category == VanillaEmiRecipeCategories.BLASTING && ModItems.AUTO_BLASTING_TYPE.equals(type)) {
                 return true;
             }
         }
